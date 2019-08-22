@@ -28,7 +28,7 @@ function [eImg,nImg] = shapesEnhance(img)
   mask = min(mask, 1);
   nImg = max(mask, img);
   
-  eImg = myMedian(nImg, 7, 3);
+  eImg = myMedian(nImg, 5, 1);
   
 end
 
