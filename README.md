@@ -3,6 +3,10 @@
 ## About
 This project shows ideas that are in my opinion a must for anyone who wish to understand digital image processing.
 
+Requirements:
+*  knowledge Calculus linear algebra and probability.
+* Matlab or Octave with image processing packages.
+
 ### Assignment 1 - Histogram shape.
 
 In these assignment we wrote a function that receives a gray-scale image and returns a gray-scale image obtained by applying the histogram shape algorithm on this image where the histogram of the result image should match the histogram of the destimg.
@@ -10,12 +14,12 @@ In these assignment we wrote a function that receives a gray-scale image and ret
 
 #### The algorithm:
 
-In order to implement the histShape algorithm we must first know more about (the links refer to the wikipedia pages of the topics):
+In order to implement the histShape algorithm we must first know more about:
 1. [Histogram](https://en.wikipedia.org/wiki/Histogram "Histogram Wiki page")
 1. [Cumulative histogram](https://en.wikipedia.org/wiki/Histogram#Cumulative_histogram "Cumulative histogram Wiki section")
 1. [Histogram equalization](https://en.wikipedia.org/wiki/Histogram_equalization "Histogram equalization Wiki page")
 
-#### Code
+#### Matlab code
 ```Matlab
 function [ newImg ] = histShape( srcimg, destimg )
 %histShape   This function creates new image from srcimg with destimg histogram.
@@ -65,7 +69,10 @@ end
 ```Matlab
 % Let srcimg be the Source image
 % Let destimg be the image we wish to match it's histogram.
+srcimg = imread('darkimg.tiff');
+destimg - imread('flatHist.tiff');
 output = histShape(srcimg, destimg);
+imshow(srcimg); figure; imshow(destimg); figure; imshow(output);
 ```
 
 #### Output image: 
