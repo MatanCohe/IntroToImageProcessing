@@ -138,7 +138,10 @@ img = imread('house.tiff');
 
 ### Shape enhance
 In this part we've wrote a function which receive an image and add shaped noise given by the following matrix: 
-[1,0,0,0,1;1,0,0,0,1;0,1,0,1,0;0,1,0,1,0;0,0,1,0,0].
+```Matlab 
+[1,0,0,0,1;1,0,0,0,1;0,1,0,1,0;0,1,0,1,0;0,0,1,0,0]
+```
+
 The function should then try to enhance the image using myMedian filter.
 
 __Function signature__ :
