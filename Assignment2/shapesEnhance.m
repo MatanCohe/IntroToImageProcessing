@@ -7,7 +7,7 @@ function [eImg,nImg] = shapesEnhance(img)
 % 0,0,1,0,0]. 
 %
 % with density of 0.003.
-% then removes the noise with 7 x 3 median filter.
+% then removes the noise with 5 x 1 median filter.
 %
 %
 %   INPUT PARAMETERS
