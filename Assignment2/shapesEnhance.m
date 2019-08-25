@@ -11,7 +11,7 @@ function [eImg,nImg] = shapesEnhance(img)
 %
 %
 %   INPUT PARAMETERS
-%       img     -   string, path to source image
+%       img     -   matrix of doubles
 %         
 %
 %   OUTPUT PARAMETERS
