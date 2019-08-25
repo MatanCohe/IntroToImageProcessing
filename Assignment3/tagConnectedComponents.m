@@ -11,7 +11,7 @@ function [newImg] = tagConnectedComponents(img)
 %
 
   pImg = padarray (img, [1, 1], 'pre');
-  [tagMatrix] = makeTagMatrix(pImg);
+  [tagMatrix] = initTagMatrix(pImg);
   eqTable = makeEqTalbe(tagMatrix);
   cv = makeConvertionVector(eqTable);
   newImg = tagImage(tagMatrix, cv); 
@@ -79,7 +79,7 @@ function [eqTable] = initEqTable(tagMatrix)
   
 end
 
-function [tagMatrix] = makeTagMatrix(img)
+function [tagMatrix] = initTagMatrix(img)
 % Given a binary image (img) make initial tag matrix of the pixles in the image.
 % One should notice that the returned tag matrix is not necesserly the corrent 
 % one as this function is just the first step toward the right tag matrix.   
@@ -89,11 +89,17 @@ function [tagMatrix] = makeTagMatrix(img)
   
   for i = 2:N
     for j = 2:M
-      if img(i, j) == 1 && (img(i-1, j) == 1 || img(i, j-1) == 1)
-        tagMatrix(i, j) = max(tagMatrix(i-1, j), tagMatrix(i, j-1));
-      elseif img(i, j) == 1
-        tagMatrix(i, j) = tag;
-        tag = tag + 1;
+      if img(i, j) == 1
+        if img(i-1, j) == 1 && img(i, j-1) == 1
+          tagMatrix(i, j) = min(tagMatrix(i-1, j), tagMatrix(i, j-1));
+        elseif img(i-1, j) == 1
+          tagMatrix(i, j) = tagMatrix(i-1, j);
+        elseif img(i, j-1) == 1
+          tagMatrix(i, j)  = tagMatrix(i, j-1);
+        else 
+          tagMatrix(i, j) = tag;
+          tag = tag + 1;
+        end
       end
     end
   end  
