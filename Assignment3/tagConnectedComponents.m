@@ -1,5 +1,7 @@
 function [newImg] = tagConnectedComponents(img)
-% This function  finds the connected components in a binary image and returns a matrix with the same size in which each connected componnent is tagged with a different label in a sequantiol manner.
+% This function  finds the connected components in a binary image and returns a 
+%matrix with the same size in which each connected componnent is tagged with a 
+%different label in a sequantiol manner.
 %
 %   INPUT PARAMETERS
 %       img     -   binary image
