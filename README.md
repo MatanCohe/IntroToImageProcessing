@@ -82,19 +82,53 @@ imshow(srcimg); figure; imshow(destimg); figure; imshow(output);
 
 ### Assignment 2 - Enhancing images
 This assignment was about image enhancement from different types of noise from an image.
-More about the topic can be found [Here](http://www.cs.haifa.ac.il/~dkeren/ip/lecture3.pdf)
+More about the topic can be found [here](http://www.cs.haifa.ac.il/~dkeren/ip/lecture3.pdf)
 
 ### Directional smoothing
+In this part of the assignment we wrote a function which receive an image and add gaussian noise to the image with mean value 0, and var=0.004, and then we've try to enhance the image using the directional smoothing. It is up to us, to choose the right directional filters (size, orientation, and values).
 
-Write a function which receive an image and add gaussian noise to the image with mean value 0, and var=0.004, and then try to enhance the image using the directional smoothing. It is up to you, to choose the right directional filters (size, orientation, and values). On the help of this function you should write which filters does this function use. The function should return 2 images. the first one is the enhanced image (eImg), and the second one is the noisy image (nImg).
-Format of Matlab function :
-
+__Function signature__ :
 ```Matlab
 function [eImg,nImg] = gaussEnhance(img)
 ```
 #### The algorithm:
+1. Choose filters.
+1. Apply the filters on the noised image.
+1. Compute the absolute value of the difference between the noised image and each filtered image.
+1. For each pixel in the new image choose the pixel with the minimum absolute value difference at the given position.
+
+#### Note:
+One should pay attention for overfitting the filters to the noised image.
+
+
 
 #### Matlab code
+```Matlab
+function [newImg] = computeSmoothenImage(img, c1, c2, c3, c4, c5, c6, c7)
+% Computes the smoothen image form the img and the image after filters
+% by choosing the closest value from filtered image to the original image at
+% position i, j.
+  [N, M] = size(img);
+  newImg = zeros(size(img));
+   
+  for i = 1:N
+    for j = 1:M
+      val = img(i, j);
+      filtered = [c1(i, j), c2(i, j), c3(i, j), c4(i, j), c5(i, j), c6(i, j), c7(i, j)];
+      [_, I] = min(abs(val - filtered));
+      newImg(i, j) = filtered(I);
+    end
+  end
+end
+```
+
 
 ### Example:
-#### Source image:
+#### Input image:
+![alt text](Assignment2/Demo/ImagesToDisplayOnWebBrowser/house.jpg "Input image")
+
+#### Noised image:
+![alt text](Assignment2/Demo/ImagesToDisplayOnWebBrowser/gaussNoiseImg.jpg "Noised image")
+
+#### Enhanced image:
+![alt text](Assignment2/Demo/ImagesToDisplayOnWebBrowser/gaussEnhanceImg.jpg "Enhanced image")
