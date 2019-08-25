@@ -174,3 +174,111 @@ img = imread('house.tiff');
 #### Enhanced image:
 
 ![alt text](Assignment2/Demo/ImagesToDisplayOnWebBrowser/shapeEnhanceImg.jpg "Enhanced image")
+
+
+### Assignment 3 - Binary images:
+This assignment was about binary images. More about the topic can be found [here](https://en.wikipedia.org/wiki/Binary_image "Binary images Wiki page").
+
+### Connected components:
+In this part we've wrote a matlab function which finds the connected components in a binary image and returns a matrix with the same size in which each connected component is tagged with a different label. The tags should be sequential.
+
+More about connected components can be found
+[here](https://en.wikipedia.org/wiki/Connected-component_labeling " Connected-component Wiki page").
+
+__Function signature__ :
+```Matlab
+function [newImg] = tagConnectedComponents(img)
+```
+
+#### The algorithm:
+This algorithm considers 4-connectivity.
+
+Let I be the input image size N x M.
+1. Initialize connected component matrix:
+![equation](https://latex.codecogs.com/gif.latex?%5C%5C%20Let%20%5C%20I%20%5C%20be%20%5C%20a%20%5C%20binary%20%5C%20image%20%5C%20of%20%5C%20size%20%5C%20N%20%5Ctimes%20M.%5C%5C%20T%20%3A%3D%20zeros%20%5C%20matrix%20%5C%20of%20%5C%20size%20%5C%20N&plus;1%20%5Ctimes%20M&plus;1.%5C%5C%20tag%20%3A%3D%200%20%5C%5C%20%5C%5C%20%5Cforall%20%5C%20i%2C%20j%20%5C%202%5Cleq%20i%20%5Cleq%20N&plus;1%20%5C%20and%20%5C%202%20%5Cleq%20j%20%5Cleq%20M&plus;1%20%5C%5C%20%5Cindent%20if%20%5C%20I%28i-1%2C%20j-1%29%20%3D%201%3A%20%5C%5C%20%5Cindent%20%5Cindent%20%5C%20if%20%5C%20T%28i-1%2Cj%29%20%3E%200%20%5C%20and%20%5C%20T%28i%2C%20j-1%29%20%3E%200%3A%5C%5C%20%5Cindent%20%5Cindent%20%5Cindent%20T%28i%2C%20j%29%20%3D%20min%20%5Cleft%20%5C%7B%20T%28i-1%2C%20j%29%2C%20T%28i%2C%20j-1%29%20%5Cright%20%5C%7D%20%5C%20%5C%5C%20%5Cindent%20%5Cindent%20else%20%5C%20if%20T%28i-1%2Cj%29%20%3E%200%3A%20%5C%5C%20%5Cindent%20%5Cindent%20%5Cindent%20T%28i%2C%20j%29%20%3D%20T%28i-1%2C%20j%29%20%5C%5C%20%5Cindent%20%5Cindent%20else%20%5C%20if%20T%28i%2Cj-1%29%20%3E%200%3A%20%5C%5C%20%5Cindent%20%5Cindent%20%5Cindent%20T%28i%2C%20j%29%20%3D%20T%28i%2Cj-1%29%20%5C%5C%20%5Cindent%20%5Cindent%20else%3A%20%5C%5C%20%5Cindent%20%5Cindent%20%5Cindent%20tag%20%3D%20tag%20&plus;%201%20%5C%5C%20%5Cindent%20%5Cindent%20%5Cindent%20T%28i%2C%20j%29%20%3D%20tag)
+
+1. Calculate equivalence table EQ:
+
+    ![equation](https://latex.codecogs.com/gif.latex?%5C%5C%20Let%20%5C%20t%20%5C%20be%20%5C%20the%20%5C%20number%20%5C%20of%20%5C%20unique%20%5C%20tags%20%5C%20in%20%5C%20T%20%5C%5C%20EQ_0%20%3A%3D%20diagonal%20%5C%20matrix%20%5C%20of%20%5C%20ones%20%5C%20with%20%5C%20size%20%5C%20t%20%5Ctimes%20%5C%20t%5C%5C%20%5Cforall%20%5C%20i%2Cj%20%5C%202%20%5Cleq%20i%20%5Cleq%20N%20&plus;%201%20%5C%20and%20%5C%202%20%5Cleq%20j%20%5Cleq%20M%20&plus;%201%20%5C%5C%20if%20%5C%20T%28i%2C%20j%29%20%3E%200%5C%5C%20%5Cindent%20p%20%3D%20T%28i%2C%20j%29%5C%5C%20%5Cindent%20T%28i-1%2C%20j%29%20%3E%200%20%5C%5C%20%5Cindent%20%5Cindent%20%5Cindent%20q%20%3D%20T%28i-1%2C%20j%29%5C%5C%20%5Cindent%20%5Cindent%20%5Cindent%20EQ_0%28p%2C%20q%29%20%3D%20EQ_0%28p%2C%20q%29%20&plus;%201%20%5C%5C%20%5Cindent%20%5Cindent%20%5Cindent%20EQ_0%28p%2C%20q%29%20%3D%20EQ_0%28q%2C%20p%29%20&plus;%201%20%5C%5C%20%5Cindent%20T%28i%2C%20j-1%29%20%3E%200%20%5C%5C%20%5Cindent%20%5Cindent%20%5Cindent%20q%20%3D%20T%28i%2C%20j-1%29%5C%5C%20%5Cindent%20%5Cindent%20%5Cindent%20EQ_0%28p%2C%20q%29%20%3D%20EQ_0%28p%2C%20q%29%20&plus;%201%20%5C%5C%20%5Cindent%20%5Cindent%20%5Cindent%20EQ_0%28p%2C%20q%29%20%3D%20EQ_0%28q%2C%20p%29%20&plus;%201%20%5C%5C%20Repeat%3A%20%5C%5C%20%5Cindent%20EQ_i%20%3D%20EQ_%7Bi-1%7D%20*%20EQ_%7Bi-1%7D%20%5C%5C%20%5Cindent%20EQ_i%20%3D%20min%281%2C%20EQ_i%29%20%5C%5C%20Until%3A%20%5C%20EQ_i%20%3D%20EQ_%7Bi-1%7D)
+
+1. Create conversion vector:
+
+    ![equation](https://latex.codecogs.com/gif.latex?%5C%5CCV%20%3A%3D%20min%28EQ%281%2C%20%3A%29%2C%201%29%20%5C%5C%20nextTag%20%3D%202%20%5C%5C%20%5Cforall%20%5C%201%20%5Cleq%20k%20%5Cleq%20t%3A%20%5C%5C%20%5Cindent%20if%20%5C%20CV%28k%29%20%3D%200%3A%20%5C%5C%20%5Cindent%20%5Cindent%20CV%20&plus;%20nextTag%20*%20EQ%28k%2C%20%3A%29%20%5C%5C%20%5Cindent%20%5Cindent%20nextTag%20%3D%20nextTag%20&plus;%201%20%5C%5C)
+
+1. Convert the tags of T by the conversion vector.
+
+#### Matlab code
+```Matlab
+function [newImg] = tagConnectedComponents(img)
+% This function  finds the connected components in a binary image and returns a 
+%matrix with the same size in which each connected components is tagged with a 
+%different label in a sequential manner.
+%
+%   INPUT PARAMETERS
+%       img     -   binary image
+%       
+%   OUTPUT PARAMETERS
+%       newImg     -   matrix of doubles
+%
+
+  pImg = padarray (img, [1, 1], 'pre');
+  [tagMatrix] = initTagMatrix(pImg);
+  eqTable = makeEqTalbe(tagMatrix);
+  cv = makeConvertionVector(eqTable);
+  newImg = tagImage(tagMatrix, cv); 
+  newImg = newImg(2:end, 2:end);
+  
+end
+```
+
+
+### Example:
+#### Input image:
+![alt text](Assignment3/Demo/ImagesToDisplayOnWebBrowser/binary1.jpg "Input image")
+
+```Matlab
+img = imread('binary1.tiff');
+output = tagConnectedComponents(img);
+```
+
+#### Output:
+```Matlab
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   1   1   1   1   1   1   1   1   1   1   0   0   0   0   0   2   0   2   0   2   0   0   0   0   0   0
+   0   0   0   0   1   1   1   1   1   1   1   1   1   1   0   0   0   0   0   2   0   2   0   2   0   0   0   0   0   0
+   0   0   0   0   1   1   0   0   0   0   0   0   1   1   0   0   0   0   0   2   0   2   0   2   0   0   0   0   0   0
+   0   0   0   0   1   1   0   3   3   0   0   0   1   1   0   0   0   0   2   2   2   2   2   2   0   0   0   0   0   0
+   0   0   0   0   1   1   0   3   3   0   0   0   1   1   0   0   0   0   0   2   0   2   0   2   0   0   0   0   0   0
+   0   0   0   0   1   1   0   0   0   0   0   0   1   1   0   0   0   0   0   2   0   2   0   2   0   0   0   0   0   0
+   0   0   0   0   1   1   1   1   1   1   1   1   1   1   0   0   0   0   0   2   0   2   0   2   0   0   0   0   0   0
+   0   0   0   0   1   1   1   1   1   1   1   1   1   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   4   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   4   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   9   9   9   9   9   9   9   9   9   9   9   9   9   9   4   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   9   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   9   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   9   0   0   0   0   9   9   9   9   9   9   9   9   9   9   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   9   0   0   0   0   9   0   0   0   0   0   0   0   0   9   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   9   0   0   0   0   9   0   0   0   0   0   0   0   0   9   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   9   0   0   0   0   9   0   0   5   5   5   5   0   0   9   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   9   0   0   0   0   9   0   0   5   0   0   5   0   0   9   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   9   0   0   0   0   9   0   0   5   0   0   5   0   0   9   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   9   0   0   0   0   9   0   0   0   0   0   5   0   0   9   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   9   0   0   0   0   9   0   0   0   0   0   5   0   0   9   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   9   0   0   0   0   9   9   9   9   9   9   9   0   0   9   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   9   0   0   0   0   0   0   0   0   0   0   0   0   0   9   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   9   0   0   0   0   0   0   0   0   0   0   0   0   0   9   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   9   9   9   9   9   9   9   9   9   9   9   9   9   9   9   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+```
+
+
+
+### Skeletonize:
+In this part we've wrote a matlab function which skeletonize objects in a given binary image and returns the new binary image.
+
+Format of Matlab function :
+function [newImg] = skeletonizeImage(img)
