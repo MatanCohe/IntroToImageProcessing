@@ -77,3 +77,24 @@ imshow(srcimg); figure; imshow(destimg); figure; imshow(output);
 
 #### Output image: 
 ![alt text](Assignment1/Demo/ImagesToDisplayOnWebBrowser/output.jpg "outputImg")
+
+
+
+### Assignment 2 - Enhancing images
+This assignment was about image enhancement from different types of noise from an image.
+More about the topic can be found [Here](http://www.cs.haifa.ac.il/~dkeren/ip/lecture3.pdf)
+
+### Directional smoothing
+
+Write a function which receive an image and add gaussian noise to the image with mean value 0, and var=0.004, and then try to enhance the image using the directional smoothing. It is up to you, to choose the right directional filters (size, orientation, and values). On the help of this function you should write which filters does this function use. The function should return 2 images. the first one is the enhanced image (eImg), and the second one is the noisy image (nImg).
+Format of Matlab function :
+
+```Matlab
+function [eImg,nImg] = gaussEnhance(img)
+```
+#### The algorithm:
+
+#### Matlab code
+
+### Example:
+#### Source image:
