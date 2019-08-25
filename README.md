@@ -92,10 +92,7 @@ __Function signature__ :
 function [eImg,nImg] = gaussEnhance(img)
 ```
 #### The algorithm:
-1. Choose filters.
-1. Apply the filters on the noised image.
-1. Compute the absolute value of the difference between the noised image and each filtered image.
-1. For each pixel in the new image choose the pixel with the minimum absolute value difference at the given position.
+![equation](https://latex.codecogs.com/gif.latex?%5C%5CLet%20%5C%20I%20be%20%5C%20a%20%5C%20image%20%5C%20of%20%5C%20shape%20%5C%20M%20%5Ctimes%20N%20%5C%20with%20%5C%20gaussian%20%5C%20noise.%20%5C%5C%20Choose%20%5C%20f%5E*%20%5Csubset%20%5C%20%5Cleft%20%5C%7B%20f%7C%20f%20%5C%20is%20%5C%20a%20%5C%20filter%20%5Cright%20%5C%7D.%20%5C%5C%20%5Cforall%20i%20%5C%201%5Cleq%20i%20%5Cleq%20N%20%5C%5C%20%5Cforall%20j%20%5C%201%5Cleq%20j%20%5Cleq%20M%20%5C%5C%20newImage_%7Bij%7D%20%3D%20%5Cmin_%7Bf%5Cprime%5Cin%20f*%7D%7B%5Cleft%20%7C%20I_%7Bij%7D%20-%20%28f%5Cprime%20%5Cast%20I%29_%7Bij%7D%20%5Cright%20%7C%7D)
 
 #### Note:
 One should pay attention for overfitting the filters to the noised image.
@@ -130,5 +127,47 @@ end
 #### Noised image:
 ![alt text](Assignment2/Demo/ImagesToDisplayOnWebBrowser/gaussNoiseImg.jpg "Noised image")
 
+```Matlab
+img = imread('house.tiff');
+[eImg,nImg] = gaussEnhance(img)
+```
+
 #### Enhanced image:
 ![alt text](Assignment2/Demo/ImagesToDisplayOnWebBrowser/gaussEnhanceImg.jpg "Enhanced image")
+
+
+### Shape enhance
+In this part we've wrote a function which receive an image and add shaped noise given by the following matrix: 
+[1,0,0,0,1;1,0,0,0,1;0,1,0,1,0;0,1,0,1,0;0,0,1,0,0].
+The function should then try to enhance the image using myMedian filter.
+
+__Function signature__ :
+```Matlab
+function [eImg,nImg] = shapesEnhance(img)
+```
+#### The algorithm:
+Due to the shape of the noise we can apply a median filter of the shape `(1, 5)` to enhance the image.
+
+
+#### Matlab code
+```Matlab
+eImg = myMedian(nImg, 5, 1);
+```
+### Example:
+
+#### Input image:
+![alt text](Assignment2/Demo/ImagesToDisplayOnWebBrowser/house.jpg "Input image")
+
+
+#### Noised image:
+![alt text](Assignment2/Demo/ImagesToDisplayOnWebBrowser/shapeNoiseImg.jpg "Noised image")
+
+
+```Matlab
+img = imread('house.tiff');
+[eImg,nImg] = shapesEnhance(img)
+```
+
+#### Enhanced image:
+
+![alt text](Assignment2/Demo/ImagesToDisplayOnWebBrowser/shapeEnhanceImg.jpg "Enhanced image")
