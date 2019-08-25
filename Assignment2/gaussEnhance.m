@@ -56,7 +56,7 @@ function [eImg] = directionalSmoothing(img)
 end
 
 function [newImg] = computeSmoothenImage(img, c1, c2, c3, c4, c5, c6, c7)
-% Computes the smootehn image form the img and the image after filters
+% Computes the smoothen image form the img and the image after filters
 % by choosing the closest value from filtered image to the original image at
 % position i, j.
   [N, M] = size(img);
