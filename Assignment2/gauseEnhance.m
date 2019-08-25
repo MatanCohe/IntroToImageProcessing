@@ -1,5 +1,7 @@
-function [eImg,nImg] = gauseEnhance(img)
-%This function adds guassian noise to the given image with mean value 0, and var=0.004, and then trys to enhance the image using directional smoothing, with the following 7x7 filters:
+function [eImg,nImg] = gaussEnhance(img)
+%This function adds gaussian noise to the given image with mean value 0, 
+%and var=0.004, and then trys to enhance the image using directional smoothing, 
+%with the following 7x7 filters:
 %1) Vertical line. 
 %2) Horizontal line.
 %3) Diagnal from top left to buttom right.
