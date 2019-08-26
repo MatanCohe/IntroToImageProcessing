@@ -379,6 +379,16 @@ function [cImg1,cImg2,cImg3,cImg4] = fftClean(img1,img2,img3,img4)
 
 ![alt text](Assignment5/Demo/ImagesToDisplayOnWebBrowser/fft4.jpg "Output image")
 
+
+```Matlab
+fft1 = im2double(imread('fft1.tiff'));
+fft2 = im2double(imread('fft2.tiff'));
+fft3 = im2double(imread('fft3.tiff'));
+fft4 = im2double(imread('fft4.tiff'));
+
+[cImg1,cImg2,cImg3,cImg4] = fftClean(fft1, fft2, fft3, fft4);
+```
+
 #### Outputs:
 
 ![alt text](Assignment5/Demo/ImagesToDisplayOnWebBrowser/fft1Clean.jpg "Output image")
