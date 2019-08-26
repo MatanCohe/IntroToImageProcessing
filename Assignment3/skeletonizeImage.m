@@ -13,7 +13,7 @@ function [newImg] = skeletonizeImage(img)
   tag = 1;
   interImg = pImg;
   tagImg = interImg;
-  while sum(sum(interImg == 1)) > 0
+  while any(interImg(:))
     interImg = updateImage(tagImg, tag);
     tagImg = tagImg + interImg;
     tag = tag + 1;
@@ -22,7 +22,7 @@ function [newImg] = skeletonizeImage(img)
   for i = 2:N-1
     for j = 2:M-1
       [pixel, v] = get4Neighborhood(tagImg, i, j);
-      if (0 < pixel) && (0 < prod(v <= pixel))
+      if (0 < pixel) && all(v <= pixel)
         newImg(i, j) = 1;
       end
     end
@@ -40,7 +40,7 @@ function [interImg] = updateImage(img, tag)
     for j = 2:M - 1
       [pixel, v] = get4Neighborhood(img, i, j);
       v = [v, pixel];
-      if (prod(v == tag) > 0)
+      if all(v == tag)
           interImg(i, j) = 1;
       end
     end
