@@ -293,5 +293,11 @@ function [newImg] = skeletonizeImage(img)
 ### Example:
 #### Input image:
 ![alt text](Assignment3/Demo/ImagesToDisplayOnWebBrowser/binaryRect.jpg "Input image")
+
+```Matlab
+bwImg = imread('binaryRect.tiff');
+output = skeletonizeImage(bwImg);
+```
+
 #### Output:
 ![alt text](Assignment3/Demo/ImagesToDisplayOnWebBrowser/rectSkeleton.jpg "Output image")
