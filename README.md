@@ -280,7 +280,7 @@ output = tagConnectedComponents(img);
 ### Skeletonize:
 In this part we've wrote a matlab function which skeletonize objects in a given binary image and returns a new binary image.
 
-__Format of Matlab function :__
+__Function signature__ :
 ```Matlab
 function [newImg] = skeletonizeImage(img)
 ```
