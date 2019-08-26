@@ -278,7 +278,20 @@ output = tagConnectedComponents(img);
 
 
 ### Skeletonize:
-In this part we've wrote a matlab function which skeletonize objects in a given binary image and returns the new binary image.
+In this part we've wrote a matlab function which skeletonize objects in a given binary image and returns a new binary image.
 
-Format of Matlab function :
+__Format of Matlab function :__
+```Matlab
 function [newImg] = skeletonizeImage(img)
+```
+
+#### The algorithm:
+
+1. Calculate distance from background for each pixel.
+1. Mark every index where the pixel value is greater or equal to it's 4-connectivity neighborhood.
+
+### Example:
+#### Input image:
+![alt text](Assignment3/Demo/ImagesToDisplayOnWebBrowser/binaryRect.jpg "Input image")
+#### Output:
+![alt text](Assignment3/Demo/ImagesToDisplayOnWebBrowser/rectSkeleton.jpg "Output image")
