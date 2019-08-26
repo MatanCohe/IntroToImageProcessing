@@ -1,5 +1,6 @@
 function [newImg] = skeletonizeImage(img)
-%skeletonizeImage   This function keletonize objects in a given binary image and returns the new binary image.
+%skeletonizeImage   This function keletonize objects in a given binary image and 
+%returns the new binary image.
 %
 %   INPUT PARAMETERS
 %       img     -   binary image
