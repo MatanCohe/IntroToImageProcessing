@@ -354,5 +354,37 @@ img = im2double(imread('balls4.tiff'));
 output = edgeDetect(img);
 ```
 
-#### Output
+#### Output:
 ![alt text](Assignment4/Demo/ImagesToDisplayOnWebBrowser/balls4HoughTransform.jpg "Output image")
+
+
+### Assignment 5 - Fourier transform:
+In this assignment we've cleaned images in the frequency domain.
+
+__Function signature__ :
+```Matlab
+function [cImg1,cImg2,cImg3,cImg4] = fftClean(img1,img2,img3,img4)
+```
+
+#### The algorithm:
+
+### Example:
+#### Inputs:
+
+![alt text](Assignment5/Demo/ImagesToDisplayOnWebBrowser/fft1.jpg "Output image")
+
+![alt text](Assignment5/Demo/ImagesToDisplayOnWebBrowser/fft2.jpg "Output image")
+
+![alt text](Assignment5/Demo/ImagesToDisplayOnWebBrowser/fft3.jpg "Output image")
+
+![alt text](Assignment5/Demo/ImagesToDisplayOnWebBrowser/fft4.jpg "Output image")
+
+#### Outputs:
+
+![alt text](Assignment5/Demo/ImagesToDisplayOnWebBrowser/fft1Clean.jpg "Output image")
+
+![alt text](Assignment5/Demo/ImagesToDisplayOnWebBrowser/fft2Clean.jpg "Output image")
+
+![alt text](Assignment5/Demo/ImagesToDisplayOnWebBrowser/fft3Clean.jpg "Output image")
+
+![alt text](Assignment5/Demo/ImagesToDisplayOnWebBrowser/fft4Clean.jpg "Output image")
