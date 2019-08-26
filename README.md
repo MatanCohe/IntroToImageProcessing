@@ -329,7 +329,7 @@ output = edgeDetect(img);
 
 ```
 
-#### Output
+#### Output:
 ![alt text](Assignment4/Demo/ImagesToDisplayOnWebBrowser/balls4Edges.jpg "Output image")
 
 
