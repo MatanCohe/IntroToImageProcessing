@@ -301,3 +301,58 @@ output = skeletonizeImage(bwImg);
 
 #### Output:
 ![alt text](Assignment3/Demo/ImagesToDisplayOnWebBrowser/rectSkeleton.jpg "Output image")
+
+
+
+### Assignment 4 - Edge detection and Hough transform:
+
+### Canny edge detector:
+In this part of the Assignment we've implemented the Canny edge detector algorithm, more about it can be found [here](https://en.wikipedia.org/wiki/Canny_edge_detector "Canny edge detector Wiki page").
+
+__Function signature__ :
+```Matlab
+function [newImg, tgTeta] = edgeDetect(img)
+```
+
+
+#### The algorithm:
+The algorithm can be found [here](https://en.wikipedia.org/wiki/Canny_edge_detector#Process_of_Canny_edge_detection_algorithm "Process of Canny edge detection algorithm")
+
+
+### Example:
+#### Input image:
+![alt text](Assignment4/Demo/ImagesToDisplayOnWebBrowser/balls4.jpg "Input image")
+
+```Matlab
+img = im2double(imread('balls4.tiff'));
+output = edgeDetect(img);
+
+```
+
+#### Output
+![alt text](Assignment4/Demo/ImagesToDisplayOnWebBrowser/balls4Edges.jpg "Output image")
+
+
+### Circle Hough Transform:
+In this part of the Assignment we've implemented the Hough transform algorithm to find circles in an image, more about it can be found [here](https://en.wikipedia.org/wiki/Circle_Hough_Transform "Circle Hough Transform").
+
+__Function signature__ :
+```Matlab
+function [circles,cImg] = findCircles(img)
+```
+
+#### The algorithm:
+The algorithm can be found [here](https://en.wikipedia.org/wiki/Circle_Hough_Transform#Theory "Circle Hough Transform theory")
+
+### Example:
+#### Input image:
+
+![alt text](Assignment4/Demo/ImagesToDisplayOnWebBrowser/balls4.jpg "Input image")
+
+```Matlab
+img = im2double(imread('balls4.tiff'));
+output = edgeDetect(img);
+```
+
+#### Output
+![alt text](Assignment4/Demo/ImagesToDisplayOnWebBrowser/balls4HoughTransform.jpg "Output image")
