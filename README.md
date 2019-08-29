@@ -398,3 +398,27 @@ fft4 = im2double(imread('fft4.tiff'));
 ![alt text](Assignment5/Demo/ImagesToDisplayOnWebBrowser/fft3Clean.jpg "Output image")
 
 ![alt text](Assignment5/Demo/ImagesToDisplayOnWebBrowser/fft4Clean.jpg "Output image")
+
+### Bonus Assignment :
+Write a matlab function which receives 2 gray-scale image and creates a new image, which is consists of tiles of the small image which forms the big image. Each of the small image tiles is processed using the histShape function of Ex1 to match the histogram of the big image in the same location.
+
+__Function signature__ :
+```Matlab
+function nImg = createTiledImage(bigImage, smallImage)
+```
+
+#### The algorithm:
+1. Cut the big image to non overlapping parts of the size of the small image.
+1. Match the histogram of the small image to each of parts.
+1. Replace the parts with the matched small image.
+
+### Example:
+#### Inputs:
+![alt text](BonusAssignment/Demo/ImagesToDisplayOnWebBrowser/bigMozart.jpg "Big image")
+
+![alt text](BonusAssignment/Demo/ImagesToDisplayOnWebBrowser/smallMozart.jpg "Small image")
+
+
+#### Output:
+
+![alt text](BonusAssignment/Demo/ImagesToDisplayOnWebBrowser/tiledImage.jpg "Small image")
